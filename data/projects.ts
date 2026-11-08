@@ -1,10 +1,12 @@
 import type { Language } from "@/lib/translations";
 
-export interface ProjectImage {
-  src: string;
+export interface ProjectLogo {
+  /** Logo for dark backgrounds (dark colour scheme). */
+  dark: string;
+  /** Logo for light backgrounds (light colour scheme). */
+  light: string;
   width: number;
   height: number;
-  alt: string;
 }
 
 export interface Project {
@@ -20,8 +22,9 @@ export interface Project {
   repoUrl?: string;
   /** Short release line shown under the title, e.g. version and date. */
   release?: string;
-  image?: ProjectImage;
-  /** Featured cards span the full grid width and show the image and details. */
+  /** Project logo; its alt text is the project name. */
+  logo?: ProjectLogo;
+  /** Featured cards span the full grid width and show the logo and details. */
   featured?: boolean;
 }
 
@@ -47,6 +50,12 @@ const secheadersTech = [
 
 const secheadersUrl = "https://secheaders-lab.netlify.app";
 const secheadersRepo = "https://github.com/Mohammed-Alrabai/secheaders-lab";
+const secheadersLogo: ProjectLogo = {
+  dark: "/projects/secheaders-lab-logo-dark.svg",
+  light: "/projects/secheaders-lab-logo-light.svg",
+  width: 329,
+  height: 64,
+};
 
 export const projects: Record<Language, Project[]> = {
   en: [
@@ -61,12 +70,7 @@ export const projects: Record<Language, Project[]> = {
       url: secheadersUrl,
       repoUrl: secheadersRepo,
       release: "Open source · v1.0.0 · November 2026",
-      image: {
-        src: "/projects/secheaders-lab-en.webp",
-        width: 1280,
-        height: 720,
-        alt: "SecHeaders Lab report for example.com: grade F, score 26/100, with failed, warning, note and passed check counts",
-      },
+      logo: secheadersLogo,
       featured: true,
     },
     {
@@ -131,12 +135,7 @@ export const projects: Record<Language, Project[]> = {
       url: secheadersUrl,
       repoUrl: secheadersRepo,
       release: "مفتوح المصدر · الإصدار v1.0.0 · نوفمبر 2026",
-      image: {
-        src: "/projects/secheaders-lab-ar.webp",
-        width: 1280,
-        height: 720,
-        alt: "تقرير SecHeaders Lab لموقع example.com: التقدير F والدرجة 26 من 100، مع أعداد الفحوصات الفاشلة والتحذيرات والملاحظات والناجحة",
-      },
+      logo: secheadersLogo,
       featured: true,
     },
     {

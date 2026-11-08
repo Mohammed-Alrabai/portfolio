@@ -23,14 +23,21 @@ export default function Projects() {
                 key={project.name}
                 className={`project-card flex flex-col${project.featured ? " project-card--featured" : ""}`}
               >
-                {project.featured && project.image && (
-                  <div className="project-media">
+                {project.featured && project.logo && (
+                  <div className="project-logo flex items-center justify-center">
                     <Image
-                      src={project.image.src}
-                      width={project.image.width}
-                      height={project.image.height}
-                      alt={project.image.alt}
-                      sizes="(max-width: 920px) 100vw, 860px"
+                      className="project-logo-dark"
+                      src={project.logo.dark}
+                      width={project.logo.width}
+                      height={project.logo.height}
+                      alt={project.name}
+                    />
+                    <Image
+                      className="project-logo-light"
+                      src={project.logo.light}
+                      width={project.logo.width}
+                      height={project.logo.height}
+                      alt={project.name}
                     />
                   </div>
                 )}
