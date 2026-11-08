@@ -8,13 +8,8 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+# Security headers are set in next.config.ts so they also cover
+# pages served by the Next.js runtime, not only static files.
 
 [[headers]]
   for = "/fonts/*"
