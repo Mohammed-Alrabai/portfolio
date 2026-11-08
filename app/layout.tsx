@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter, JetBrains_Mono, Tajawal } from "next/font/google";
 import { LanguageProvider } from "@/lib/language-context";
+import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -19,10 +20,28 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
 });
 
+// The Open Graph image comes from app/opengraph-image.tsx (Next.js adds its tags).
 export const metadata: Metadata = {
-  title: "Mohammed Alrabai — Full-Stack Engineer",
-  description:
-    "Full-Stack Software Engineer specializing in DevOps and Application Security. Building and securing enterprise systems in production.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: "/",
+    siteName: "Mohammed Alrabai",
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_US",
+    alternateLocale: ["ar_SA"],
+    firstName: "Mohammed",
+    lastName: "Alrabai",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 const themeInitScript = `(function(){try{
