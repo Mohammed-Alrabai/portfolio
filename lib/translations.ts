@@ -28,6 +28,8 @@ export const t = {
     },
     projects: {
       private: "Private — Internal System",
+      live: "Live site",
+      source: "Source code",
     },
     certifications: {
       expired: "Expired",
@@ -64,6 +66,8 @@ export const t = {
     },
     projects: {
       private: "خاص — نظام داخلي",
+      live: "الموقع المباشر",
+      source: "الشيفرة المصدرية",
     },
     certifications: {
       expired: "منتهية الصلاحية",

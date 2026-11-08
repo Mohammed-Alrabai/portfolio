@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
 import { projects } from "@/data/projects";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Badge from "@/components/ui/Badge";
@@ -17,17 +19,66 @@ export default function Projects() {
           <SectionTitle title={t[language].sections.projects} />
           <div className="projects-grid grid">
             {projects[language].map((project) => (
-              <article key={project.name} className="project-card flex flex-col">
-                <h3 className="project-name h3">{project.name}</h3>
-                <p className="project-desc">{project.description}</p>
-                <div className="project-tech flex flex-wrap">
-                  {project.tech.map((tech) => (
-                    <Badge key={tech}>{tech}</Badge>
-                  ))}
+              <article
+                key={project.name}
+                className={`project-card flex flex-col${project.featured ? " project-card--featured" : ""}`}
+              >
+                {project.featured && project.image && (
+                  <div className="project-media">
+                    <Image
+                      src={project.image.src}
+                      width={project.image.width}
+                      height={project.image.height}
+                      alt={project.image.alt}
+                      sizes="(max-width: 920px) 100vw, 860px"
+                    />
+                  </div>
+                )}
+                <div className="project-body flex flex-col">
+                  <div>
+                    <h3 className="project-name h3">{project.name}</h3>
+                    {project.release && (
+                      <p className="project-release meta">{project.release}</p>
+                    )}
+                  </div>
+                  <p className="project-desc">{project.description}</p>
+                  {project.featured && project.details && (
+                    <p className="project-details">{project.details}</p>
+                  )}
+                  <div className="project-tech flex flex-wrap">
+                    {project.tech.map((tech) => (
+                      <Badge key={tech}>{tech}</Badge>
+                    ))}
+                  </div>
+                  {project.linkType === "private" ? (
+                    <p className="project-status meta">{t[language].projects.private}</p>
+                  ) : (
+                    <div className="project-status project-links meta flex flex-wrap items-center">
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-underline inline-flex items-center"
+                        >
+                          <FiExternalLink aria-hidden="true" />
+                          {t[language].projects.live}
+                        </a>
+                      )}
+                      {project.repoUrl && (
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-underline inline-flex items-center"
+                        >
+                          <FiGithub aria-hidden="true" />
+                          {t[language].projects.source}
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
-                <p className="project-status meta">
-                  {project.linkType === "private" ? t[language].projects.private : project.url}
-                </p>
               </article>
             ))}
           </div>
