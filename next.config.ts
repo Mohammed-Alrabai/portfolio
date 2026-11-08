@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-// Security headers live here (not in netlify.toml) so they also reach pages
-// rendered by the Next.js runtime on Netlify, not only static files.
+// Security headers for pages rendered by the Next.js runtime. On Netlify,
+// static files get the same headers from netlify.toml. Keep both lists in sync.
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
