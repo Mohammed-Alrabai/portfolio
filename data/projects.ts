@@ -1,11 +1,28 @@
 import type { Language } from "@/lib/translations";
 
+export interface ProjectImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
 export interface Project {
   name: string;
   description: string;
+  /** Longer second paragraph, shown on featured cards only. */
+  details?: string;
   tech: string[];
   linkType: "private" | "public";
+  /** Live site (public projects). */
   url?: string;
+  /** Source code repository (public projects). */
+  repoUrl?: string;
+  /** Short release line shown under the title, e.g. version and date. */
+  release?: string;
+  image?: ProjectImage;
+  /** Featured cards span the full grid width and show the image and details. */
+  featured?: boolean;
 }
 
 const intranetTech = ["Next.js", "NestJS", "MongoDB", "Docker", "Microsoft Entra ID"];
@@ -15,9 +32,43 @@ const correspondenceTech = ["Node.js", "MongoDB", "React"];
 const licenseTech = ["React", "Node.js", "MongoDB", "CI/CD"];
 const assetTech = ["React", "Node.js", "MongoDB", "Express.js"];
 const ehssTech = ["React", "Node.js", "MongoDB", "Docker"];
+const secheadersTech = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "next-intl",
+  "Zod",
+  "Vitest",
+  "Playwright",
+  "GitHub Actions",
+  "Netlify",
+];
+
+const secheadersUrl = "https://secheaders-lab.netlify.app";
+const secheadersRepo = "https://github.com/Mohammed-Alrabai/secheaders-lab";
 
 export const projects: Record<Language, Project[]> = {
   en: [
+    {
+      name: "SecHeaders Lab",
+      description:
+        "Bilingual (English/Arabic, full RTL) passive security review for public websites — checks HTTP security headers, HTTPS/TLS, cookies, and information disclosure, then returns a 0–100 score, an A+ to F grade, a plain-language explanation of every finding, and copy-ready fixes for Nginx, Apache, IIS, Next.js, Netlify, and Cloudflare. Reports are shareable by link and printable as PDF.",
+      details:
+        "SSRF-hardened scanner: strict URL policy, public-only DNS validation, IP-pinned connections against DNS rebinding, and re-validated redirects, with a per-request nonce CSP. Covered by 1,280 unit/integration and 75 Playwright end-to-end tests, with CodeQL, Semgrep, Gitleaks, and pnpm audit in CI. Scores A+ on its own scanner and on Mozilla Observatory, Lighthouse 99–100 in every category, WCAG 2.2 AA.",
+      tech: secheadersTech,
+      linkType: "public",
+      url: secheadersUrl,
+      repoUrl: secheadersRepo,
+      release: "Open source · v1.0.0 · November 2026",
+      image: {
+        src: "/projects/secheaders-lab-en.webp",
+        width: 1280,
+        height: 720,
+        alt: "SecHeaders Lab report for example.com: grade F, score 26/100, with failed, warning, note and passed check counts",
+      },
+      featured: true,
+    },
     {
       name: "Enterprise Intranet Portal",
       description:
@@ -69,6 +120,25 @@ export const projects: Record<Language, Project[]> = {
     },
   ],
   ar: [
+    {
+      name: "SecHeaders Lab",
+      description:
+        "أداة ثنائية اللغة (العربية والإنجليزية مع دعم كامل للاتجاه من اليمين إلى اليسار) لفحص أمني سلبي (Passive) للمواقع العامة — تقيّم رؤوس الأمان في HTTP وإعدادات HTTPS/TLS وملفات تعريف الارتباط وتسريب المعلومات، وتعطي درجة من 0 إلى 100 وتقديرًا من A+ إلى F، مع شرح مبسّط لكل نتيجة وإعدادات إصلاح جاهزة للنسخ لـ Nginx وApache وIIS وNext.js وNetlify وCloudflare. يمكن مشاركة التقارير برابط وطباعتها بصيغة PDF.",
+      details:
+        "ماسح محصَّن ضد SSRF: سياسة صارمة للعناوين، وقبول عناوين DNS العامة فقط، وتثبيت الاتصال على عنوان IP لمنع DNS Rebinding، وإعادة التحقق من كل تحويل، مع CSP بقيمة nonce لكل طلب. مغطّى بـ 1,280 اختبار وحدة وتكامل و75 اختبارًا شاملًا (E2E) عبر Playwright، مع CodeQL وSemgrep وGitleaks وpnpm audit في CI. يحصل على A+ في ماسحه الخاص وفي Mozilla Observatory، و99–100 في جميع فئات Lighthouse، ومتوافق مع WCAG 2.2 AA.",
+      tech: secheadersTech,
+      linkType: "public",
+      url: secheadersUrl,
+      repoUrl: secheadersRepo,
+      release: "مفتوح المصدر · الإصدار v1.0.0 · نوفمبر 2026",
+      image: {
+        src: "/projects/secheaders-lab-ar.webp",
+        width: 1280,
+        height: 720,
+        alt: "تقرير SecHeaders Lab لموقع example.com: التقدير F والدرجة 26 من 100، مع أعداد الفحوصات الفاشلة والتحذيرات والملاحظات والناجحة",
+      },
+      featured: true,
+    },
     {
       name: "بوابة الإنترانت المؤسسية",
       description:

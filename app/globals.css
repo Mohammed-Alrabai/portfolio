@@ -452,9 +452,67 @@ li {
   gap: var(--space-4);
 }
 
+.project-body {
+  flex: 1;
+  gap: var(--space-4);
+}
+
+.project-release {
+  margin-top: var(--space-1);
+}
+
 .project-desc {
   color: var(--text-muted);
   flex: 1;
+}
+
+/* Featured (public) project: full grid width, screenshot banner above the text. */
+
+.project-card--featured {
+  grid-column: 1 / -1;
+  gap: var(--space-5);
+}
+
+.project-media {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-inset);
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.project-card--featured .project-desc,
+.project-details {
+  max-width: 680px;
+}
+
+.project-card--featured .project-desc {
+  flex: none;
+}
+
+.project-details {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.project-links {
+  gap: var(--space-5);
+}
+
+.project-links a {
+  gap: 0.4em;
+}
+
+@media (max-width: 640px) {
+  .project-media {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .project-tech {
